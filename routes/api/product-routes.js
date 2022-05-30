@@ -9,23 +9,19 @@ router.get('/', (req, res) => {
   // be sure to include its associated Category and Tag data
   Product.findAll({
     attributes: ["id", "product_name", "price", "stock", "category_id"],
-    include:[{
-      Model: Product,
+    include: [{
+      model: Category,
       attributes: ["id", "category_name"],
-      include: [{
-        Model: Category,
-        attributes: ["id", "category_name"],
-      },{
-        Model: Tag,
-        attributes: ["id", "tag_name"]
-      }]
+    }, {
+      model: Tag,
+      attributes: ['tag_name']
     }]
-    .then((dbproductData=> res.json(dbproductData)))
+  })
+    .then(dbProductData => res.json(dbProductData))
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
-    })
-  })
+    });
 });
 
 // get one product
@@ -36,31 +32,27 @@ router.get('/:id', (req, res) => {
     where: {
       id: req.params.id
     },
-    // be sure to include its associated Products
+    attributes: ['id', 'product_name', 'price', 'stock'],
+    model: Product,
     include: [{
-      model: Product,
-      attributes:["id", "product_name", "price", "stock"],
-      include: [{
-          Model: Category,
-          attributes: ["id", "category_name"],
-        },{
-          Model: Tag,
-          attributes: ["id", "tag_name"]
-        }]
-      }]
+      model: Category,
+      attributes: ['category_name']
+    }, {
+      model: Tag,
+      attributes: ['tag_name']
+    }]
   })
-  .then(dbproductData => {
-    if (!dbproductData) {
-      res.status(404).json({ message: 'No post found with this id' });
-      return;
-    }
-    res.json(dbproductData);
-  })
-  .catch(err => {
-    console.log(err);
-    res.status(500).json(err);
-  });
-
+    .then(dbproductData => {
+      if (!dbproductData) {
+        res.status(404).json({ message: 'No post found with this id' });
+        return;
+      }
+      res.json(dbproductData);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 // create new product
@@ -144,17 +136,17 @@ router.delete('/:id', (req, res) => {
       id: req.params.id
     }
   })
-  .then(dbProductData => {
-    if (!dbProductData) {
-      res.status(404).json({ message: 'No post found with this id' });
-      return;
-    }
-    res.json(dbProductData);
-  })
-  .catch(err => {
-    console.log(err);
-    res.status(500).json(err);
-  });
+    .then(dbProductData => {
+      if (!dbProductData) {
+        res.status(404).json({ message: 'No post found with this id' });
+        return;
+      }
+      res.json(dbProductData);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 module.exports = router;

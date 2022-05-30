@@ -23,8 +23,6 @@ ProductTag.init(
     },
     tag_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: { isNumeric: true },
       reference: {
         model: "tag",
         key: "id"
