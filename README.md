@@ -3,7 +3,7 @@
 # E-commerce Back End(ORM) Project
 ## Description:
 <blockquote>
-<p>Build the back end for an e-commerce site with express.js API and configure it to use Sequalize to interact with a MySQL database.
+<p>Build a back end for an e-commerce site with express.js API and configure it to use Sequalize to interact with a MySQL database.
 
 [Walktrough example](https://drive.google.com/file/d/1apTdqrCFP6vcfXGbBGnLkrvjHSp4vzT3/view?usp=sharing)
 </p>
