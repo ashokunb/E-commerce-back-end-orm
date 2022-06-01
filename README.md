@@ -6,6 +6,9 @@
 <p>Build a back end for an e-commerce site with express.js API and configure it to use Sequalize to interact with a MySQL database.
 
 [Walktrough example](https://drive.google.com/file/d/1apTdqrCFP6vcfXGbBGnLkrvjHSp4vzT3/view?usp=sharing)
+
+[Github](https://github.com/ashokunb/E-commerce-back-end-orm)
+
 </p>
 </blockquote>
 <br><br>
